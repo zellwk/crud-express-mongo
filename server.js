@@ -8,7 +8,7 @@ var db
 MongoClient.connect('mongodb://zellwk:zellwk@ds047955.mongolab.com:47955/star-wars-quotes', (err, database) => {
   if (err) return console.log(err)
   db = database
-  app.listen(3000, () => {
+  app.listen(process.env.PORT || 3000, () => {
     console.log('listening on 3000')
   })
 })
