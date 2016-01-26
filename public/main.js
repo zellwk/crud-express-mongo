@@ -1,7 +1,7 @@
 /* globals fetch */
-
 var update = document.getElementById('update')
 var del = document.getElementById('delete')
+
 update.addEventListener('click', function () {
   fetch('quotes', {
     method: 'put',
@@ -10,8 +10,12 @@ update.addEventListener('click', function () {
       'name': 'Darth Vader',
       'quote': 'I find your lack of faith disturbing.'
     })
-  }).then(function (response) {
-    window.location.reload()
+  })
+  .then(response => {
+    if (response.ok) return response.json()
+  })
+  .then(data => {
+    console.log(data)
   })
 })
 

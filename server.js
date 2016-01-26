@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-
 const MongoClient = require('mongodb').MongoClient
+
 var db
 
 MongoClient.connect('mongodb://zellwk:zellwk@ds047955.mongolab.com:47955/star-wars-quotes', (err, database) => {
@@ -16,7 +16,7 @@ MongoClient.connect('mongodb://zellwk:zellwk@ds047955.mongolab.com:47955/star-wa
 app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
-app.use(express.static(__dirname + '/public'))
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
   db.collection('quotes').find().toArray((err, result) => {
@@ -35,14 +35,17 @@ app.post('/quotes', (req, res) => {
 
 app.put('/quotes', (req, res) => {
   db.collection('quotes')
-  .findOneAndUpdate({}, {
+  .findOneAndUpdate({name: 'Yoda'}, {
     $set: {
       name: req.body.name,
       quote: req.body.quote
     }
+  }, {
+    sort: {_id: -1},
+    upsert: true
   }, (err, result) => {
-    if (err) return res.send(500, err)
-    res.send(result.value)
+    if (err) return res.send(err)
+    res.send(result)
   })
 })
 
