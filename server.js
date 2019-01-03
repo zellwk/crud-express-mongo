@@ -5,7 +5,8 @@ const MongoClient = require('mongodb').MongoClient
 
 var db
 
-MongoClient.connect('mongodb://zellwk:zellwk@ds047955.mongolab.com:47955/star-wars-quotes', (err, database) => {
+// Remember to change YOUR_USERNAME and YOUR_PASSWORD to your username and password! 
+MongoClient.connect('mongodb://YOUR_USERNAME:YOUR_PASSWORD@ds047955.mongolab.com:47955/star-wars-quotes', (err, database) => {
   if (err) return console.log(err)
   db = database
   app.listen(process.env.PORT || 3000, () => {
