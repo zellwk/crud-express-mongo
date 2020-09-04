@@ -13,7 +13,7 @@
     "body-parser": "^1.14.2",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
-    "mongodb": "^2.1.4"
+    "mongodb": "^3.6.1"
   },
   "devDependencies": {
     "nodemon": "^1.8.1"
